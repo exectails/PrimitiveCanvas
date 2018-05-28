@@ -19,7 +19,7 @@ namespace UiTest
 		private void Form1_Load(object sender, EventArgs e)
 		{
 			//Canvas.InteractionMode = InteractionMode.Tools;
-			Canvas.SetCanvasArea(70000, 80000);
+			Canvas.SetCanvasArea(300, 300);
 			Canvas.ScaleType = ScaleType.Dynamic;
 
 			Canvas.MouseClick += this.Canvas1_MouseClick;
@@ -30,13 +30,13 @@ namespace UiTest
 			//pic.Interactions = ObjectInteractions.None;
 			//Canvas.Add(pic);
 
-			var flat = new FlatRect(new RectangleF(0, 0, 150, 150), Color.AliceBlue);
-			Canvas.Add(new CanvasObject(0, 0, flat)
-			{
-				Interactions = ObjectInteractions.None,
-				//DrawOrder = 1,
-				Visible = true
-			});
+			//var flat = new FlatRect(new RectangleF(0, 0, 150, 150), Color.AliceBlue);
+			//Canvas.Add(new CanvasObject(0, 0, flat)
+			//{
+			//	Interactions = ObjectInteractions.None,
+			//	//DrawOrder = 1,
+			//	Visible = true
+			//});
 
 			CanvasObject o1 = new Rect(140, 140, 43, 43);
 			Canvas.Add(o1);
