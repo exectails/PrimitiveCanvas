@@ -93,6 +93,12 @@ namespace PrimitiveCanvas.Primitives
 			var destRect = new RectangleF(x, y, width, height);
 
 			g.DrawImage(this.Image, destRect, srcRect, GraphicsUnit.Pixel);
+
+			if (this.Object.Selected)
+			{
+				var pen = this.Object.GetOutlinePen();
+				g.DrawRectangle(pen, this.DestRect.X, this.DestRect.Y, this.DestRect.Width, this.DestRect.Height);
+			}
 		}
 
 		/// <summary>
