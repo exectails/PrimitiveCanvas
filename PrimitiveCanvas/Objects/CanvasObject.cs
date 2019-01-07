@@ -169,6 +169,18 @@ namespace PrimitiveCanvas.Objects
 		}
 
 		/// <summary>
+		/// Resizes object's primitives by multiplying their sizes with
+		/// the given value.
+		/// </summary>
+		/// <param name="multiplier"></param>
+		public void Resize(double multiplier)
+		{
+			var primitives = this.Primitives;
+			for (var i = 0; i < primitives.Count; ++i)
+				primitives[i].Resize(this.Position, multiplier);
+		}
+
+		/// <summary>
 		/// Returns true if the given position is inside one of the
 		/// object's primitives.
 		/// </summary>

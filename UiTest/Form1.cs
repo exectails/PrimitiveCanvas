@@ -57,9 +57,11 @@ namespace UiTest
 			Canvas.Add(obj1);
 
 			var obj = new CanvasObject(130, 120);
+			obj.Add(new FlatRect(new RectangleF(130, 120, 10, 10), Color.Black));
+			//obj.Add(new Picture(new Bitmap(@"..."), new RectangleF(0, 0, 600, 851), new RectangleF(130, 120, 20, 20)));
 			obj.Add(new Rect(120, 110, 10, 10));
 			obj.Add(new Rect(140, 110, 10, 10));
-			obj.Add(new Rect(130, 130, 10, 10));
+			obj.Add(new Circle(130, 130, 5));
 			obj.Add(new Polygon(new PointF(120, 110), new PointF(140, 110), new PointF(130, 130)));
 			Canvas.Add(obj);
 
@@ -150,6 +152,18 @@ namespace UiTest
 			{
 				var objects = Canvas.GetSelectedObjects();
 				Canvas.ScrollToWorldPosition(objects[0].Position);
+			}
+			else if (e.KeyCode == Keys.Add)
+			{
+				var objects = Canvas.GetSelectedObjects();
+				objects.ForEach(a => a.Resize(1.1));
+				Canvas.Invalidate();
+			}
+			else if (e.KeyCode == Keys.Subtract)
+			{
+				var objects = Canvas.GetSelectedObjects();
+				objects.ForEach(a => a.Resize(0.9));
+				Canvas.Invalidate();
 			}
 
 			label2.Text = Canvas.SelectedTool.ToString();

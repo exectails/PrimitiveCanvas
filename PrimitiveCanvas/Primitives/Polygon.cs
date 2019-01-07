@@ -156,5 +156,26 @@ namespace PrimitiveCanvas.Primitives
 				this.Points[i] = point.RotatePoint(pivot, radians);
 			}
 		}
+
+		/// <summary>
+		/// Resizes polygon, multiplying its size by the given value.
+		/// </summary>
+		/// <param name="pivot"></param>
+		/// <param name="multiplier"></param>
+		public override void Resize(PointF pivot, double multiplier)
+		{
+			for (var i = 0; i < this.Points.Length; ++i)
+			{
+				var point = this.Points[i];
+
+				var pos = point;
+				var diffX = (pos.X - pivot.X);
+				var diffY = (pos.Y - pivot.Y);
+				var scaledX = (pivot.X + diffX * multiplier);
+				var scaledY = (pivot.Y + diffY * multiplier);
+
+				this.Points[i] = new PointF((float)scaledX, (float)scaledY);
+			}
+		}
 	}
 }

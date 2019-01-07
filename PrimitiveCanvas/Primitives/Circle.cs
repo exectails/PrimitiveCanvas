@@ -95,6 +95,24 @@ namespace PrimitiveCanvas.Primitives
 		{
 			this.Position = this.Position.RotatePoint(pivot, radians);
 		}
+
+		/// <summary>
+		/// Resizes circle, multiplying its radius by the given multiplier
+		/// and updating its position in relation to the pivot point.
+		/// </summary>
+		/// <param name="pivot"></param>
+		/// <param name="multiplier"></param>
+		public override void Resize(PointF pivot, double multiplier)
+		{
+			this.Radius = (float)(this.Radius * multiplier);
+
+			var pos = this.Position;
+			var diffX = (pos.X - pivot.X);
+			var diffY = (pos.Y - pivot.Y);
+			var scaledX = (pivot.X + diffX * multiplier);
+			var scaledY = (pivot.Y + diffY * multiplier);
+
+			this.Position = new PointF((float)scaledX, (float)scaledY);
 		}
 	}
 }

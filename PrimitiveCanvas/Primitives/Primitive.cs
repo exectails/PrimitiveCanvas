@@ -55,5 +55,21 @@ namespace PrimitiveCanvas.Primitives
 		/// <param name="pivot"></param>
 		/// <param name="radians"></param>
 		public abstract void Rotate(PointF pivot, double radians);
+
+		/// <summary>
+		/// Resizes this primitive using the given multiplier.
+		/// </summary>
+		/// <param name="multiplier"></param>
+		public virtual void Resize(double multiplier)
+		{
+			this.Rotate(this.Position, multiplier);
+		}
+
+		/// <summary>
+		/// Resizes this primitive using the given multiplier.
+		/// </summary>
+		/// <param name="pivot"></param>
+		/// <param name="multiplier"></param>
+		public abstract void Resize(PointF pivot, double multiplier);
 	}
 }

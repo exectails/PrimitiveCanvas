@@ -19,6 +19,7 @@ namespace PrimitiveCanvas
 		private bool _isDragging;
 		private Point _dragStartPoint, _dragLast;
 		private float _dragDegree;
+		private int _stepsPrev;
 		private DragMode _dragMode;
 
 		private List<CanvasObject> _selectedObjects = new List<CanvasObject>();
@@ -646,6 +647,7 @@ namespace PrimitiveCanvas
 
 			_dragStartPoint = _dragLast = e.Location;
 			_dragDegree = 0;
+			_stepsPrev = 0;
 
 			if (e.Button == MouseButtons.Left)
 			{
@@ -825,12 +827,29 @@ namespace PrimitiveCanvas
 						delta.Y = -delta.Y;
 
 					_dragDegree += delta.Y;
+
 					for (var i = 0; i < objects.Count; ++i)
 					{
 						var obj = objects[i];
 						if (obj.Is(ObjectInteractions.Rotatable))
-							obj.Rotate(delta.Y * (Math.PI / 180));
+						{
+							if (Control.ModifierKeys == Keys.Shift)
+							{
+								var steps = (int)(_dragDegree / 45);
+								if (steps != _stepsPrev)
+								{
+									obj.Rotate((steps - _stepsPrev) * 45 * (Math.PI / 180));
+								}
+							}
+							else
+							{
+								obj.Rotate(delta.Y * (Math.PI / 180));
+							}
+						}
 					}
+
+					_stepsPrev = (int)(_dragDegree / 45);
+
 					this.Invalidate();
 				}
 			}

@@ -128,5 +128,30 @@ namespace PrimitiveCanvas.Primitives
 		public override void Rotate(PointF pivot, double radians)
 		{
 		}
+
+		/// <summary>
+		/// Resizes destination rect, multiplying its radius by the
+		/// given multiplier and updating its position in relation to
+		/// the pivot point.
+		/// </summary>
+		/// <param name="pivot"></param>
+		/// <param name="multiplier"></param>
+		public override void Resize(PointF pivot, double multiplier)
+		{
+			var rect = this.DestRect;
+
+			rect.Width = (float)(this.DestRect.Width * multiplier);
+			rect.Height = (float)(this.DestRect.Height * multiplier);
+
+			var pos = rect.Location;
+			var diffX = (pos.X - pivot.X);
+			var diffY = (pos.Y - pivot.Y);
+			var scaledX = (pivot.X + diffX * multiplier);
+			var scaledY = (pivot.Y + diffY * multiplier);
+
+			rect.Location = new PointF((float)scaledX, (float)scaledY);
+
+			this.DestRect = rect;
+		}
 	}
 }

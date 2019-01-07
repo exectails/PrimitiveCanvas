@@ -123,5 +123,14 @@ namespace PrimitiveCanvas.Primitives
 		public override void Rotate(PointF pivot, double radians)
 		{
 		}
+
+		/// <summary>
+		/// Not supported.
+		/// </summary>
+		/// <param name="pivot"></param>
+		/// <param name="multiplier"></param>
+		public override void Resize(PointF pivot, double multiplier)
+		{
+		}
 	}
 }
