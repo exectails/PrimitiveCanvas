@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using PrimitiveCanvas.Extensions;
 
 namespace PrimitiveCanvas.Primitives
 {
@@ -48,8 +49,8 @@ namespace PrimitiveCanvas.Primitives
 		/// <param name="invertHeight"></param>
 		public override void Draw(Graphics g, float scale, int invertHeight)
 		{
-			var x = (this.Position.X - Radius);
-			var y = (this.Position.Y - Radius);
+			var x = (this.Position.X - this.Radius);
+			var y = (this.Position.Y - this.Radius);
 			var size = (this.Radius * 2);
 			var pen = this.Object.GetOutlinePen();
 
@@ -86,12 +87,14 @@ namespace PrimitiveCanvas.Primitives
 		}
 
 		/// <summary>
-		/// Does not rotate this circle, as that would be pointless.
+		/// Updates circle's position around the pivot point.
 		/// </summary>
 		/// <param name="pivot"></param>
 		/// <param name="radians"></param>
 		public override void Rotate(PointF pivot, double radians)
 		{
+			this.Position = this.Position.RotatePoint(pivot, radians);
+		}
 		}
 	}
 }
